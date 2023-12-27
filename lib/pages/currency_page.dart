@@ -1,9 +1,28 @@
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+class CurrencyPagePage extends StatefulWidget {
+  const CurrencyPagePage({super.key});
+  @override
+  State<CurrencyPagePage> createState() => _CurrencyConverter();
+}
+
+class _CurrencyConverter extends State<CurrencyPagePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold();
+  }
+}
 
 class CurrencyPage extends StatelessWidget {
   const CurrencyPage({super.key});
+
   @override
   Widget build(BuildContext context) {
+    double result = 0;
+
+    final TextEditingController textEditingController = TextEditingController();
+
     const mainBorder = OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.black,
@@ -15,29 +34,35 @@ class CurrencyPage extends StatelessWidget {
       ),
     );
 
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        title: const Text(
+          "Currency Converter",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "0",
-              style: TextStyle(
+              result.toString(),
+              style: const TextStyle(
                   fontSize: 49,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: 10,
-                right: 10,
-              ),
+              padding: const EdgeInsets.all(10),
               child: TextField(
-                style: TextStyle(
+                controller: textEditingController,
+                style: const TextStyle(
                   color: Colors.black,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Please enter the amount in XAF",
                   hintStyle: TextStyle(
                     color: Colors.black,
@@ -48,9 +73,29 @@ class CurrencyPage extends StatelessWidget {
                   focusedBorder: mainBorder,
                   enabledBorder: mainBorder,
                 ),
-                keyboardType: TextInputType.numberWithOptions(
+                keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextButton(
+                onPressed: () {
+                  result = double.parse(textEditingController.text) * 2;
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(
+                    double.infinity,
+                    50,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+                child: const Text("Convert"),
               ),
             ),
           ],
