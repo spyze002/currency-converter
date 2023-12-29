@@ -8,21 +8,12 @@ class CurrencyPagePage extends StatefulWidget {
 }
 
 class _CurrencyConverter extends State<CurrencyPagePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
-  }
-}
-
-class CurrencyPage extends StatelessWidget {
-  const CurrencyPage({super.key});
+  double result = 0;
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    double result = 0;
-
-    final TextEditingController textEditingController = TextEditingController();
-
+    print("rebuild");
     const mainBorder = OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.black,
@@ -49,7 +40,7 @@ class CurrencyPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              result.toString(),
+              "XAF ${result.toString()}",
               style: const TextStyle(
                   fontSize: 49,
                   fontWeight: FontWeight.bold,
@@ -82,7 +73,9 @@ class CurrencyPage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: TextButton(
                 onPressed: () {
-                  result = double.parse(textEditingController.text) * 2;
+                  setState(() {
+                    result = double.parse(textEditingController.text) * 592.25;
+                  });
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.black,
