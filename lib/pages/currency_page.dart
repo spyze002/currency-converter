@@ -13,7 +13,6 @@ class _CurrencyConverter extends State<CurrencyPagePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("rebuild");
     const mainBorder = OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.black,

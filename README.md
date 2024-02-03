@@ -1,6 +1,6 @@
 # bp
 
-A new Flutter project.
+Currency converter application by Esum Brandon.
 
 ## Getting Started
 
